@@ -1,4 +1,4 @@
-#!/home/walker/python-phase-4-code-challenge-pizza/server/my_venv/bin/python3
+#!/home/walker/python-phase-4-code-challenge-pizza/server/my_venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

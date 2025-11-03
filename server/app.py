@@ -56,18 +56,14 @@ class RestaurantPizzas(Resource):
         try:
             data = request.get_json()
             restaurant_pizza = RestaurantPizza(
-                price=data['price'],
-                pizza_id=data['pizza_id'],
-                restaurant_id=data['restaurant_id']
+                price=data.get('price'),
+                pizza_id=data.get('pizza_id'),
+                restaurant_id=data.get('restaurant_id')
             )
             db.session.add(restaurant_pizza)
             db.session.commit()
             return make_response(restaurant_pizza.to_dict(), 201)
-        except ValueError as e:
-            db.session.rollback()
-            return make_response({"errors": ["validation errors"]}, 400)
-        except Exception as e:
-            db.session.rollback()
+        except (ValueError, Exception):
             return make_response({"errors": ["validation errors"]}, 400)
 
 api.add_resource(Restaurants, '/restaurants')
